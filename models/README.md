@@ -293,3 +293,105 @@ feature projection
 ID matching
 triangulation
 ```
+## Materials and Optical Interfaces
+
+The standalone component models include simplified PBRT materials so that the
+geometry can be inspected under approximately realistic optical conditions.
+
+These materials are primarily intended for raytracing and photogrammetry
+development rather than as a complete optical model of every detector
+component.
+
+### FD mPMT
+
+The FD mPMT currently uses:
+
+| Component | PBRT representation |
+|---|---|
+| Support / metal hardware | conductor |
+| PMT photocathode | gold-like conductor approximation |
+| Support matrix | very dark diffuse material |
+| Acrylic dome | dielectric |
+| Optical gel | dielectric |
+| PMT glass | dielectric |
+| PMT interior | vacuum / dielectric interface |
+
+The main refractive indices currently used are:
+
+```text
+air      : 1.00
+water    : 1.33
+acrylic  : 1.49
+gel      : 1.46
+glass    : 1.50
+vacuum   : 1.00
+```
+
+Interfaces are defined explicitly between adjacent materials, including:
+
+```text
+water → acrylic
+air → acrylic
+acrylic → gel
+acrylic → air
+gel → glass
+air → glass
+glass → vacuum
+```
+
+The metallic PMT photocathode is currently an approximation and should not be
+interpreted as a full wavelength-dependent PMT response model.
+
+### LED-FEB
+
+The LED-FEB model contains its own optical and structural materials.
+
+These include:
+
+- dark board / housing materials
+- acrylic components
+- PTFE diffuser components
+- optical gel where applicable
+- wavelength-dependent LED emission models
+
+The LED source geometry and the surrounding optical stack can be used for
+lighting studies.
+
+For photogrammetry-only studies, the detailed LED optical model may instead
+be replaced by a simplified emissive target so that the feature location is
+clearly defined.
+
+### R12860 20-inch PMT
+
+The R12860 model contains:
+
+- dielectric glass
+- vacuum interior
+- simplified reflective photocathode
+- surrounding water interface
+
+The current model concentrates on reproducing the visible front geometry and
+the principal refractive interfaces.
+
+The internal PMT optical response remains simplified.
+
+## Material Approximations
+
+Several material properties are currently approximations.
+
+In particular:
+
+- photocathodes are represented using reflective conductor materials
+- acrylic and gel absorption are simplified
+- detailed wavelength-dependent glass properties are not included
+- surface roughness values are approximate
+- support-matrix material is primarily chosen to reproduce its dark appearance
+- LED optical properties are simplified relative to the complete physical
+  device
+
+These assumptions should be considered when interpreting absolute light
+levels or detailed reflection behaviour.
+
+For photogrammetry studies, the most important requirement is that the
+geometry, refractive interfaces and feature positions remain consistent
+between the standalone models and the full detector renderer.
