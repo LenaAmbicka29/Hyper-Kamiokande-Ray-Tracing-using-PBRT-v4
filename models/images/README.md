@@ -120,8 +120,6 @@ r12860_side.png
 r12860_angle.png
 ```
 
-Keeping the naming consistent makes the images easy to reference from the main `models/README.md`.
-
 ---
 
 ## Purpose
