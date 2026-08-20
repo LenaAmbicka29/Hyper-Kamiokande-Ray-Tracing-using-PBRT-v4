@@ -1,1 +1,5 @@
-file:///home/photogrammetry/pbrt-v4-hyperk/HK_RAYTRACING_GIT/hyperk_integrated_models_bundle/wcte_mpmt_model_with_housing_bundle/single_wcte_mpmt_angle.png
+mkdir -p images
+cp /path/to/single_wcte_mpmt.png images/
+git add images/single_wcte_mpmt.png
+git commit -m "Add mPMT render"
+git push
