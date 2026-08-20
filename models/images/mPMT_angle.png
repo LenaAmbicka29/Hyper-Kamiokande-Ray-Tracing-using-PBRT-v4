@@ -1,5 +1,0 @@
-mkdir -p images
-cp /path/to/single_wcte_mpmt.png images/
-git add images/single_wcte_mpmt.png
-git commit -m "Add mPMT render"
-git push
